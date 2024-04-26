@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공학용 계산기</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .calculator {
+            max-width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .calculator h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <h2>공학용 계산기</h2>
+    <input type="text" id="inputField" readonly>
+    <div>
+        <button class="btn btn-primary" onclick="clearInput()">C</button>
+        <button class="btn btn-primary" onclick="appendToInput('%')">%</button>
+        <button class="btn btn-primary" onclick="appendToInput('**')">x^y</button>
+        <button class="btn btn-primary" onclick="appendToInput('sqrt(')">√</button>
+    </div>
+    <div>
+        <button class="btn" onclick="appendToInput('7')">7</button>
+        <button class="btn" onclick="appendToInput('8')">8</button>
+        <button class="btn" onclick="appendToInput('9')">9</button>
+        <button class="btn btn-primary" onclick="appendToInput('/')">/</button>
+    </div>
+    <div>
+        <button class="btn" onclick="appendToInput('4')">4</button>
+        <button class="btn" onclick="appendToInput('5')">5</button>
+        <button class="btn" onclick="appendToInput('6')">6</button>
+        <button class="btn btn-primary" onclick="appendToInput('*')">*</button>
+    </div>
+    <div>
+        <button class="btn" onclick="appendToInput('1')">1</button>
+        <button class="btn" onclick="appendToInput('2')">2</button>
+        <button class="btn" onclick="appendToInput('3')">3</button>
+        <button class="btn btn-primary" onclick="appendToInput('-')">-</button>
+    </div>
+    <div>
+        <button class="btn" onclick="appendToInput('0')">0</button>
+        <button class="btn" onclick="appendToInput('.')">.</button>
+        <button class="btn btn-primary" onclick="calculate()">=</button>
+        <button class="btn btn-primary" onclick="appendToInput('+')">+</button>
+    </div>
+</div>
+
+<script>
+    function appendToInput(value) {
+        document.getElementById('inputField').value += value;
+    }
+
+    function clearInput() {
+        document.getElementById('inputField').value = '';
+    }
+
+    function calculate() {
+        try {
+            let result = eval(document.getElementById('inputField').value);
+            document.getElementById('inputField').value = result;
+        } catch (error) {
+            document.getElementById('inputField').value = 'Error';
+        }
+    }
+</script>
+
+</body>
+</html>
